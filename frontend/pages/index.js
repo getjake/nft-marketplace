@@ -73,7 +73,6 @@ export default function Home() {
     const contract = new ethers.Contract(nftmarketaddress, Market.abi, signer);
     // this nft price
     const price = web3.utils.toWei(nft.price.toString(), 'ether');
-    console.log('price: ', price, ' wei');
 
     const transaction = await contract.createMarketSale(nftaddress, nft.tokenId, { value: price });
     await transaction.wait();
@@ -91,9 +90,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className='border p-4 shadow'>
-                {/* <img src={nft.image} alt='nft-image' className='rounded' /> */}
-                <Image src={nft.image} alt='nft-image' layout='fill' className='rounded' />
-                {/* <Image src={nft.image} alt='nft-image' /> */}
+                <img src={nft.image} alt='nft-image' className='rounded' />
                 <p className='text-2xl my-4 font-bold'>Price: {nft.price} </p>
                 <button className='bg-green-600 text-white py-2 px-12 rounded' onClick={() => buyNft(nft)}>Buy NFT</button>
               </div>
